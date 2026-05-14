@@ -843,167 +843,6 @@ footer{
 }
 
 /* ============================================
-   EDIT MODE
-============================================ */
-.edit-banner{
-  position:fixed; top:0; left:0; right:0;
-  background:var(--ink); color:var(--paper);
-  padding:10px 24px;
-  font-size:11px; letter-spacing:0.15em; text-transform:uppercase;
-  display:none;
-  align-items:center; justify-content:space-between;
-  z-index:150;
-  border-bottom:1px solid var(--clay);
-}
-.edit-banner-hint{opacity:0.7; font-size:10px}
-.edit-banner-hint kbd{
-  background:rgba(239,233,220,0.1); padding:2px 6px;
-  border:1px solid rgba(239,233,220,0.2);
-  font-family:var(--sans); font-size:9px;
-  margin:0 2px;
-}
-body.edit-mode .edit-banner{display:flex}
-body.edit-mode{padding-top:38px}
-body.edit-mode nav{top:38px}
-
-.edit-bar{
-  position:fixed;bottom:28px;right:28px;
-  z-index:300;display:flex;gap:10px;align-items:center;
-}
-.edit-btn{
-  font-family:var(--sans);font-size:11px;
-  letter-spacing:0.12em;text-transform:uppercase;
-  padding:11px 20px;border:1px solid var(--ink);
-  background:var(--paper);color:var(--ink);
-  cursor:pointer;transition:background 0.2s,color 0.2s;
-  font-weight:500;
-}
-.edit-btn:hover{background:var(--ink);color:var(--paper)}
-.edit-btn--primary{background:var(--clay);color:var(--paper);border-color:var(--clay)}
-.edit-btn--primary:hover{background:var(--clay-deep);border-color:var(--clay-deep)}
-.edit-actions{display:none;gap:10px}
-body.edit-mode .edit-actions{display:flex}
-.edit-toggle-on{display:inline}
-.edit-toggle-off{display:none}
-body.edit-mode .edit-toggle-on{display:none}
-body.edit-mode .edit-toggle-off{display:inline}
-
-body.edit-mode [data-field]{
-  outline:1.5px dashed rgba(176,90,60,0.4);
-  outline-offset:3px;cursor:text;
-  border-radius:1px;
-  transition:outline-color 0.2s, background 0.2s;
-}
-body.edit-mode [data-field]:hover{outline-color:var(--clay)}
-body.edit-mode [data-field]:focus{
-  outline:2px solid var(--clay);
-  outline-offset:3px;
-  background:rgba(176,90,60,0.06);
-}
-body.edit-mode .statement [data-field]:focus{background:rgba(239,233,220,0.06)}
-
-.work-desc-edit{
-  display:none;font-size:13px;line-height:1.65;
-  color:var(--ink-soft);margin-top:12px;
-  padding:10px 14px;border-left:2px solid var(--moss);
-  background:rgba(110,119,88,0.05);
-}
-body.edit-mode .work-desc-edit{display:block}
-
-.edit-toast{
-  position:fixed;bottom:100px;right:28px;
-  background:var(--ink);color:var(--paper);
-  padding:11px 22px;font-family:var(--sans);
-  font-size:11px;letter-spacing:0.1em;
-  text-transform:uppercase;
-  z-index:400;opacity:0;transition:opacity 0.3s;pointer-events:none;
-  border-left:2px solid var(--clay);
-}
-
-/* Image edit controls */
-.img-edit-wrap{
-  display:none;
-  position:absolute; left:0; right:0; bottom:0;
-  background:rgba(26,22,18,0.92);
-  padding:10px 12px;
-  gap:8px;
-  align-items:center;
-  z-index:5;
-}
-body.edit-mode .img-edit-wrap{display:flex}
-.img-url-input{
-  flex:1;
-  padding:7px 10px;font-family:var(--sans);font-size:11px;
-  border:none;
-  background:rgba(239,233,220,0.1);color:var(--paper);
-  outline:none;
-  letter-spacing:0.02em;
-}
-.img-url-input::placeholder{color:rgba(239,233,220,0.4)}
-.img-url-input:focus{background:rgba(239,233,220,0.18)}
-.img-upload-btn{
-  font-family:var(--sans);font-size:10px;
-  letter-spacing:0.1em;text-transform:uppercase;
-  padding:7px 12px;border:1px solid rgba(239,233,220,0.25);
-  background:transparent;color:var(--paper);
-  cursor:pointer;transition:background 0.2s;
-  white-space:nowrap;
-}
-.img-upload-btn:hover{background:rgba(239,233,220,0.1)}
-
-/* CV edit */
-.cv-delete{
-  display:none;background:none;border:none;
-  color:var(--clay);cursor:pointer;
-  font-size:18px;line-height:1;padding:0 6px;opacity:0.55;
-  transition:opacity 0.2s;
-}
-body.edit-mode .cv-item{grid-template-columns:110px 1fr auto;align-items:center}
-body.edit-mode .cv-delete{display:block}
-.cv-delete:hover{opacity:1}
-
-.cv-add,.obra-add,.red-add{
-  display:none;font-family:var(--sans);font-size:11px;
-  letter-spacing:0.12em;text-transform:uppercase;
-  background:none;border:1px dashed rgba(176,90,60,0.45);
-  color:var(--clay);padding:9px 18px;cursor:pointer;
-  margin-top:16px;transition:all 0.2s;
-  font-weight:500;
-}
-body.edit-mode .cv-add,body.edit-mode .obra-add,body.edit-mode .red-add{display:inline-block}
-.cv-add:hover,.obra-add:hover,.red-add:hover{background:var(--clay);border-color:var(--clay);color:var(--paper)}
-
-.obra-delete{
-  display:none;font-family:var(--sans);font-size:10px;
-  letter-spacing:0.1em;text-transform:uppercase;
-  background:none;border:1px dashed rgba(176,90,60,0.4);
-  color:var(--clay);padding:7px 14px;cursor:pointer;
-  margin-top:12px;transition:all 0.2s;
-}
-body.edit-mode .obra-delete{display:inline-block}
-.obra-delete:hover{background:rgba(176,90,60,0.08);border-color:var(--clay)}
-
-.red-delete{
-  display:none;background:none;border:none;
-  color:var(--clay);cursor:pointer;font-size:15px;
-  padding:0 6px;opacity:0.55;vertical-align:middle;
-}
-body.edit-mode .red-delete{display:inline; opacity:1}
-
-.social-url-input{
-  display:none;background:none;border:none;
-  border-bottom:1px solid rgba(176,90,60,0.4);
-  font-family:var(--sans);font-size:10px;
-  color:var(--ink-soft);padding:3px 0;width:180px;
-  letter-spacing:0.02em;
-}
-body.edit-mode .social-url-input{display:inline-block}
-body.edit-mode .contact-socials{gap:28px;flex-wrap:wrap}
-body.edit-mode .contact-socials li{display:flex;flex-direction:column;align-items:center;gap:6px}
-
-.gallery-add-row{text-align:center;padding-top:32px}
-
-/* ============================================
    ANIMATIONS
 ============================================ */
 @keyframes fadeUp{
@@ -1178,39 +1017,30 @@ async function getInfo() {
 }
 
 // ============================================
-// RENDER HELPERS
+// RENDER
 // ============================================
-function imgEditBlock(field, src) {
-  return '<div class="img-edit-wrap">' +
-    '<input class="img-url-input" type="url" data-img-field="' + field + '" value="' + src + '" placeholder="URL de imagen…">' +
-    '<button class="img-upload-btn" type="button" onclick="uploadImage(this)">Subir</button>' +
-  '</div>';
-}
-
 function renderNav(d) {
   var parts = d.artista.nombre.split(' ');
   var links = d.nav.links.map(function(l) {
     return '<li><a href="' + l.href + '">' + l.texto + '</a></li>';
   }).join('');
   return '<nav id="mainNav">' +
-    '<div class="nav-logo" data-field="artista.nombre">' + parts[0] + ' <em>' + parts.slice(1).join(' ') + '</em></div>' +
+    '<div class="nav-logo">' + parts[0] + ' <em>' + parts.slice(1).join(' ') + '</em></div>' +
     '<ul class="nav-links">' + links + '</ul>' +
     '</nav>';
 }
 
 function renderHero(d) {
   var parts = d.artista.nombre.split(' ');
-  var year = new Date().getFullYear();
   return '<section class="hero">' +
     '<div class="hero-text">' +
-      '<div class="hero-label" data-field="hero.etiqueta">' + d.hero.etiqueta + '</div>' +
-      '<h1 id="heroNameH1">' + parts[0] + '<br><em>' + parts.slice(1).join(' ') + '</em></h1>' +
-      '<p class="hero-tagline" data-field="hero.tagline">' + d.hero.tagline + '</p>' +
+      '<div class="hero-label">' + d.hero.etiqueta + '</div>' +
+      '<h1>' + parts[0] + '<br><em>' + parts.slice(1).join(' ') + '</em></h1>' +
+      '<p class="hero-tagline">' + d.hero.tagline + '</p>' +
     '</div>' +
     '<div class="hero-image">' +
       '<img src="' + d.hero.imagen.src + '" alt="' + d.hero.imagen.alt + '" loading="eager" decoding="async">' +
-      imgEditBlock('hero.imagen.src', d.hero.imagen.src) +
-      '<div class="hero-image-caption" data-field="hero.imagen.caption">' + d.hero.imagen.caption + '</div>' +
+      '<div class="hero-image-caption">' + d.hero.imagen.caption + '</div>' +
     '</div>' +
     '<div class="hero-meta">' +
       '<span>Portfolio · MMXXVI</span>' +
@@ -1221,8 +1051,8 @@ function renderHero(d) {
 }
 
 function renderAbout(d) {
-  var parrafos = d.sobre.bio.map(function(p, i) {
-    return '<p data-field="sobre.bio.' + i + '">' + p + '</p>';
+  var parrafos = d.sobre.bio.map(function(p) {
+    return '<p>' + p + '</p>';
   }).join('');
   return '<section id="sobre" class="about">' +
     '<div class="section-header" data-reveal>' +
@@ -1232,7 +1062,6 @@ function renderAbout(d) {
     '<div class="about-grid">' +
       '<div class="about-image" data-reveal>' +
         '<img src="' + d.sobre.imagen.src + '" alt="' + d.sobre.imagen.alt + '" loading="lazy" decoding="async">' +
-        imgEditBlock('sobre.imagen.src', d.sobre.imagen.src) +
       '</div>' +
       '<div class="about-body" data-reveal>' + parrafos + '</div>' +
     '</div>' +
@@ -1240,8 +1069,8 @@ function renderAbout(d) {
 }
 
 function renderStatement(d) {
-  var parrafos = d.declaracion.parrafos.map(function(p, i) {
-    return '<p data-field="declaracion.parrafos.' + i + '">' + p + '</p>';
+  var parrafos = d.declaracion.parrafos.map(function(p) {
+    return '<p>' + p + '</p>';
   }).join('');
   return '<section id="statement" class="statement">' +
     '<div class="section-header" data-reveal>' +
@@ -1249,13 +1078,12 @@ function renderStatement(d) {
       '<h2 class="section-title">Declaración <em>artística</em></h2>' +
     '</div>' +
     '<div class="statement-body" data-reveal>' +
-      '<blockquote data-field="declaracion.cita">' + d.declaracion.cita + '</blockquote>' +
+      '<blockquote>' + d.declaracion.cita + '</blockquote>' +
       parrafos +
     '</div>' +
     '</section>';
 }
 
-// Patrón de cuadrícula asimétrica
 var gridPattern = [
   { col: '1/6',  mt: '0' },
   { col: '7/12', mt: '96px' },
@@ -1276,18 +1104,15 @@ function renderGallery(d) {
       '<div class="work-image">' +
         '<img src="' + o.imagen.src + '" alt="' + o.imagen.alt + '" loading="lazy" decoding="async">' +
         '<div class="work-image-cta"><span>Ver detalle</span><span>→</span></div>' +
-        imgEditBlock('obras.' + i + '.imagen.src', o.imagen.src) +
       '</div>' +
       '<div class="work-info">' +
-        '<h3 data-field="obras.' + i + '.titulo">' + o.titulo + '</h3>' +
+        '<h3>' + o.titulo + '</h3>' +
         '<p class="work-meta">' +
-          '<span data-field="obras.' + i + '.tecnica">' + o.tecnica + '</span>' +
-          '<span class="work-meta-sep">·</span><span data-field="obras.' + i + '.dimensiones">' + o.dimensiones + '</span>' +
-          '<span class="work-meta-sep">·</span><span data-field="obras.' + i + '.año">' + o.año + '</span>' +
+          '<span>' + o.tecnica + '</span>' +
+          '<span class="work-meta-sep">·</span><span>' + o.dimensiones + '</span>' +
+          '<span class="work-meta-sep">·</span><span>' + o.año + '</span>' +
         '</p>' +
-        '<p class="work-price" data-field="obras.' + i + '.precio">' + o.precio + '</p>' +
-        '<p class="work-desc-edit" data-field="obras.' + i + '.descripcion">' + o.descripcion + '</p>' +
-        '<button class="obra-delete" onclick="deleteObra(this)">Eliminar obra</button>' +
+        '<p class="work-price">' + o.precio + '</p>' +
       '</div>' +
       '</article>';
   }).join('');
@@ -1302,31 +1127,25 @@ function renderGallery(d) {
     '<div class="gallery">' +
       '<div class="gallery-grid" id="galleryGrid">' + obras + '</div>' +
       boton +
-      '<div class="gallery-add-row"><button class="obra-add" onclick="addObra()">+ Agregar obra</button></div>' +
     '</div>' +
     '</section>';
 }
 
-function renderCVGroup(label, items, basePath) {
-  var lis = items.map(function(item, i) {
+function renderCVGroup(label, items) {
+  var lis = items.map(function(item) {
     var periodoKey = item.año !== undefined ? 'año' : 'periodo';
     var lugarKey = item.lugar !== undefined ? 'lugar' : 'institucion';
-    var base = basePath + '.' + i;
     return '<li class="cv-item">' +
-      '<span class="cv-year" data-field="' + base + '.' + periodoKey + '">' + item[periodoKey] + '</span>' +
+      '<span class="cv-year">' + item[periodoKey] + '</span>' +
       '<div class="cv-desc">' +
-        '<strong data-field="' + base + '.titulo">' + item.titulo + '</strong>' +
-        '<span data-field="' + base + '.' + lugarKey + '">' + item[lugarKey] + '</span>' +
+        '<strong>' + item.titulo + '</strong>' +
+        '<span>' + item[lugarKey] + '</span>' +
       '</div>' +
-      '<button class="cv-delete" data-cv-path="' + basePath + '" onclick="deleteCVItem(this)">×</button>' +
       '</li>';
   }).join('');
   return '<div class="cv-grid" data-reveal>' +
     '<div class="cv-category">' + label + '</div>' +
-    '<div>' +
-      '<ul class="cv-list">' + lis + '</ul>' +
-      '<button class="cv-add" data-cv-path="' + basePath + '" onclick="addCVItem(this)">+ Agregar</button>' +
-    '</div>' +
+    '<ul class="cv-list">' + lis + '</ul>' +
     '</div>';
 }
 
@@ -1337,29 +1156,24 @@ function renderCV(d) {
       '<h2 class="section-title"><em>Trayectoria</em></h2>' +
     '</div>' +
     '<div class="cv-wrap">' +
-      renderCVGroup('Exposiciones individuales', d.cv.exposiciones_individuales, 'cv.exposiciones_individuales') +
-      renderCVGroup('Exposiciones colectivas', d.cv.exposiciones_colectivas, 'cv.exposiciones_colectivas') +
-      renderCVGroup('Reconocimientos', d.cv.reconocimientos, 'cv.reconocimientos') +
-      renderCVGroup('Formación', d.cv.formacion, 'cv.formacion') +
+      renderCVGroup('Exposiciones individuales', d.cv.exposiciones_individuales) +
+      renderCVGroup('Exposiciones colectivas', d.cv.exposiciones_colectivas) +
+      renderCVGroup('Reconocimientos', d.cv.reconocimientos) +
+      renderCVGroup('Formación', d.cv.formacion) +
     '</div>' +
     '</section>';
 }
 
 function renderContact(d) {
-  var redes = d.contacto.redes.map(function(r, i) {
-    return '<li>' +
-      '<a href="' + r.href + '" data-field="contacto.redes.' + i + '.nombre">' + r.nombre + '</a>' +
-      '<input class="social-url-input" type="url" data-field="contacto.redes.' + i + '.href" value="' + r.href + '" placeholder="https://…">' +
-      '<button class="red-delete" onclick="deleteRed(this)">×</button>' +
-    '</li>';
+  var redes = d.contacto.redes.map(function(r) {
+    return '<li><a href="' + r.href + '">' + r.nombre + '</a></li>';
   }).join('');
   return '<section id="contacto" class="contact">' +
     '<div class="contact-content" data-reveal>' +
-      '<div class="contact-pretitle" data-field="contacto.pretitulo">' + d.contacto.pretitulo + '</div>' +
-      '<h2 data-field="contacto.llamada">' + d.contacto.llamada + '</h2>' +
-      '<a href="mailto:' + d.contacto.email + '" class="contact-email" data-field="contacto.email">' + d.contacto.email + '</a>' +
+      '<div class="contact-pretitle">' + d.contacto.pretitulo + '</div>' +
+      '<h2>' + d.contacto.llamada + '</h2>' +
+      '<a href="mailto:' + d.contacto.email + '" class="contact-email">' + d.contacto.email + '</a>' +
       '<ul class="contact-socials">' + redes + '</ul>' +
-      '<button class="red-add" onclick="addRed()">+ Agregar red</button>' +
     '</div>' +
     '</section>';
 }
@@ -1369,23 +1183,6 @@ function renderFooter(d) {
     '<div>' + d.footer.copyright + '</div>' +
     '<div>' + d.footer.ubicacion + '</div>' +
     '</footer>';
-}
-
-function renderEditBar() {
-  return '<div class="edit-banner">' +
-      '<span>Modo edición activo · Click en cualquier texto para editar</span>' +
-      '<span class="edit-banner-hint">Atajos · <kbd>Esc</kbd> salir</span>' +
-    '</div>' +
-    '<div class="edit-bar">' +
-    '<div class="edit-actions">' +
-      '<button class="edit-btn" onclick="copyJSON()">Copiar JSON</button>' +
-      '<button class="edit-btn edit-btn--primary" onclick="downloadJSON()">Descargar JSON</button>' +
-    '</div>' +
-    '<button class="edit-btn" onclick="toggleEditMode()">' +
-      '<span class="edit-toggle-on">✏ Editar contenido</span>' +
-      '<span class="edit-toggle-off">✓ Listo</span>' +
-    '</button>' +
-  '</div>';
 }
 
 function renderModal() {
@@ -1429,7 +1226,6 @@ function initGallery() {
   btn.addEventListener('click', function() {
     document.querySelectorAll('.work--hidden').forEach(function(w) {
       w.classList.remove('work--hidden');
-      // re-trigger reveal
       requestAnimationFrame(function(){ w.classList.add('in'); });
     });
     btn.parentElement.remove();
@@ -1458,8 +1254,7 @@ function initModal() {
     modalImg.alt = img.alt;
     modalTitle.textContent = work.querySelector('.work-info h3').textContent;
     modalMeta.textContent = work.querySelector('.work-meta').textContent.replace(/\s+/g,' ').trim();
-    var descEl = work.querySelector('.work-desc-edit');
-    modalDesc.textContent = descEl ? descEl.textContent.trim() : (work.dataset.description || '');
+    modalDesc.textContent = work.dataset.description || '';
     modalPrice.textContent = work.querySelector('.work-price').textContent;
     modalCounter.textContent = (index + 1) + ' / ' + works.length;
     overlay.classList.add('active');
@@ -1473,10 +1268,8 @@ function initModal() {
   }
 
   document.addEventListener('click', function(e) {
-    if (document.body.classList.contains('edit-mode')) return;
     var work = e.target.closest('.work');
     if (!work) return;
-    if (e.target.closest('.obra-delete') || e.target.closest('.img-edit-wrap')) return;
     var index = parseInt(work.dataset.index, 10);
     openObra(index);
   });
@@ -1486,13 +1279,10 @@ function initModal() {
   document.getElementById('modalNext').addEventListener('click', function(){ openObra(currentObraIndex + 1); });
   overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function(e) {
-    if (overlay.classList.contains('active')) {
-      if (e.key === 'Escape') closeModal();
-      else if (e.key === 'ArrowLeft') openObra(currentObraIndex - 1);
-      else if (e.key === 'ArrowRight') openObra(currentObraIndex + 1);
-    } else if (e.key === 'Escape' && document.body.classList.contains('edit-mode')) {
-      toggleEditMode();
-    }
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') closeModal();
+    else if (e.key === 'ArrowLeft') openObra(currentObraIndex - 1);
+    else if (e.key === 'ArrowRight') openObra(currentObraIndex + 1);
   });
 }
 
@@ -1509,306 +1299,11 @@ function initReveal() {
 }
 
 // ============================================
-// EDIT MODE — data path helpers
-// ============================================
-function getPath(obj, path) {
-  return path.split('.').reduce(function(cur, k) {
-    return cur[isNaN(k) ? k : parseInt(k)];
-  }, obj);
-}
-function setPath(obj, path, value) {
-  var parts = path.split('.');
-  var cur = obj;
-  for (var i = 0; i < parts.length - 1; i++) {
-    var k = isNaN(parts[i]) ? parts[i] : parseInt(parts[i]);
-    cur = cur[k];
-  }
-  var last = parts[parts.length - 1];
-  last = isNaN(last) ? last : parseInt(last);
-  cur[last] = value;
-}
-
-function collectJSON() {
-  var data = JSON.parse(JSON.stringify(window.__data));
-  var seen = {};
-  document.querySelectorAll('[data-field]').forEach(function(el) {
-    var field = el.dataset.field;
-    if (seen[field]) return;
-    seen[field] = true;
-    var value = el.tagName === 'INPUT' ? el.value.trim() : el.textContent.trim();
-    var parts = field.split('.');
-    var orig = window.__data;
-    try {
-      parts.forEach(function(p) { orig = orig[isNaN(p) ? p : parseInt(p)]; });
-      if (typeof orig === 'number') value = parseFloat(value) || 0;
-    } catch(e) {}
-    try { setPath(data, field, value); } catch(e) {}
-  });
-  document.querySelectorAll('input[data-img-field]').forEach(function(el) {
-    if (el.value.trim()) {
-      try { setPath(data, el.dataset.imgField, el.value.trim()); } catch(e) {}
-    }
-  });
-  return data;
-}
-
-function toggleEditMode() {
-  var editing = document.body.classList.toggle('edit-mode');
-  document.querySelectorAll('[data-field]').forEach(function(el) {
-    if (editing) {
-      el.setAttribute('contenteditable', 'true');
-      el.setAttribute('spellcheck', 'false');
-    } else {
-      el.removeAttribute('contenteditable');
-    }
-  });
-}
-
-function showToast(msg) {
-  var t = document.createElement('div');
-  t.className = 'edit-toast';
-  t.textContent = msg;
-  document.body.appendChild(t);
-  requestAnimationFrame(function() { t.style.opacity = '1'; });
-  setTimeout(function() {
-    t.style.opacity = '0';
-    setTimeout(function() { t.remove(); }, 300);
-  }, 2200);
-}
-
-function downloadJSON() {
-  var json = JSON.stringify(collectJSON(), null, 2);
-  var blob = new Blob([json], { type: 'application/json' });
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'contenido.json';
-  a.click();
-  showToast('Descargando contenido.json');
-}
-
-function copyJSON() {
-  var json = JSON.stringify(collectJSON(), null, 2);
-  navigator.clipboard.writeText(json).then(function() {
-    showToast('JSON copiado al portapapeles');
-  });
-}
-
-// ============================================
-// IMAGE UPLOAD (file → data URL)
-// ============================================
-function uploadImage(btn) {
-  var wrap = btn.closest('.img-edit-wrap');
-  var input = wrap.querySelector('.img-url-input');
-  var img = wrap.parentElement.querySelector('img');
-  var picker = document.createElement('input');
-  picker.type = 'file';
-  picker.accept = 'image/*';
-  picker.onchange = function() {
-    var file = picker.files[0];
-    if (!file) return;
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      img.src = e.target.result;
-      input.value = e.target.result;
-      showToast('Imagen cargada · recuerda descargar el JSON');
-    };
-    reader.readAsDataURL(file);
-  };
-  picker.click();
-}
-
-// ============================================
-// DYNAMIC LIST UPDATERS
-// ============================================
-function reindexList(listEl, basePath) {
-  var re = new RegExp('^' + basePath.replace(/\./g, '\\.') + '\\.\\d+\\.');
-  listEl.querySelectorAll(':scope > li').forEach(function(li, i) {
-    li.querySelectorAll('[data-field]').forEach(function(el) {
-      el.dataset.field = el.dataset.field.replace(re, basePath + '.' + i + '.');
-    });
-    var delBtn = li.querySelector('.cv-delete');
-    if (delBtn) delBtn.dataset.cvPath = basePath;
-  });
-}
-
-function reindexObras() {
-  var grid = document.getElementById('galleryGrid');
-  if (!grid) return;
-  var re = /^obras\.\d+\./;
-  grid.querySelectorAll('.work').forEach(function(work, i) {
-    work.dataset.index = i;
-    work.querySelectorAll('[data-field]').forEach(function(el) {
-      el.dataset.field = el.dataset.field.replace(re, 'obras.' + i + '.');
-    });
-    var imgInput = work.querySelector('input[data-img-field]');
-    if (imgInput) imgInput.dataset.imgField = 'obras.' + i + '.imagen.src';
-  });
-}
-
-function reindexRedes() {
-  var list = document.querySelector('.contact-socials');
-  if (!list) return;
-  list.querySelectorAll('li').forEach(function(li, i) {
-    var a = li.querySelector('a[data-field]');
-    if (a) a.dataset.field = 'contacto.redes.' + i + '.nombre';
-    var inp = li.querySelector('input[data-field]');
-    if (inp) inp.dataset.field = 'contacto.redes.' + i + '.href';
-  });
-}
-
-function deleteCVItem(btn) {
-  var li = btn.closest('li');
-  var list = li.parentElement;
-  var basePath = btn.dataset.cvPath;
-  var index = Array.from(list.querySelectorAll(':scope > li')).indexOf(li);
-  li.remove();
-  getPath(window.__data, basePath).splice(index, 1);
-  reindexList(list, basePath);
-}
-
-function addCVItem(btn) {
-  var basePath = btn.dataset.cvPath;
-  var arr = getPath(window.__data, basePath);
-  var sample = arr[0] || {};
-  var periodoKey = sample.año !== undefined ? 'año' : 'periodo';
-  var lugarKey = sample.lugar !== undefined ? 'lugar' : 'institucion';
-  var i = arr.length;
-  var base = basePath + '.' + i;
-  var periodoVal = periodoKey === 'año' ? new Date().getFullYear() : '20XX – 20XX';
-  var lugarDefault = lugarKey === 'lugar' ? 'Lugar · Ciudad' : 'Institución';
-  var isEdit = document.body.classList.contains('edit-mode');
-  var ce = isEdit ? ' contenteditable="true" spellcheck="false"' : '';
-  var li = document.createElement('li');
-  li.className = 'cv-item';
-  li.innerHTML =
-    '<span class="cv-year" data-field="' + base + '.' + periodoKey + '"' + ce + '>' + periodoVal + '</span>' +
-    '<div class="cv-desc">' +
-      '<strong data-field="' + base + '.titulo"' + ce + '>Título</strong>' +
-      '<span data-field="' + base + '.' + lugarKey + '"' + ce + '>' + lugarDefault + '</span>' +
-    '</div>' +
-    '<button class="cv-delete" data-cv-path="' + basePath + '" onclick="deleteCVItem(this)">×</button>';
-  btn.previousElementSibling.appendChild(li);
-  var newItem = { titulo: 'Título' };
-  newItem[periodoKey] = periodoVal;
-  newItem[lugarKey] = lugarDefault;
-  arr.push(newItem);
-}
-
-function deleteObra(btn) {
-  if (!confirm('¿Eliminar esta obra?')) return;
-  var grid = document.getElementById('galleryGrid');
-  var article = btn.closest('.work');
-  var index = Array.from(grid.querySelectorAll('.work')).indexOf(article);
-  article.remove();
-  window.__data.obras.splice(index, 1);
-  reindexObras();
-}
-
-function addObra() {
-  var grid = document.getElementById('galleryGrid');
-  var i = grid.querySelectorAll('.work').length;
-  var p = gridPattern[i % gridPattern.length];
-  var style = 'grid-column:' + p.col + ';margin-top:' + p.mt + ';';
-  var placeholder = 'https://images.unsplash.com/photo-1579541814924-49fef17c5be5?w=900&q=80&auto=format&fit=crop';
-  var isEdit = document.body.classList.contains('edit-mode');
-  var ce = isEdit ? ' contenteditable="true" spellcheck="false"' : '';
-  var yr = new Date().getFullYear();
-  var article = document.createElement('article');
-  article.className = 'work in';
-  article.style.cssText = style;
-  article.dataset.description = 'Descripción de la obra.';
-  article.dataset.index = i;
-  article.innerHTML =
-    '<div class="work-image">' +
-      '<img src="' + placeholder + '" alt="Nueva obra" loading="lazy" decoding="async">' +
-      '<div class="work-image-cta"><span>Ver detalle</span><span>→</span></div>' +
-      '<div class="img-edit-wrap">' +
-        '<input class="img-url-input" type="url" data-img-field="obras.' + i + '.imagen.src" value="' + placeholder + '" placeholder="URL de imagen…">' +
-        '<button class="img-upload-btn" type="button" onclick="uploadImage(this)">Subir</button>' +
-      '</div>' +
-    '</div>' +
-    '<div class="work-info">' +
-      '<h3 data-field="obras.' + i + '.titulo"' + ce + '>Nueva obra</h3>' +
-      '<p class="work-meta">' +
-        '<span data-field="obras.' + i + '.tecnica"' + ce + '>Técnica</span>' +
-        '<span class="work-meta-sep">·</span><span data-field="obras.' + i + '.dimensiones"' + ce + '>00 × 00 cm</span>' +
-        '<span class="work-meta-sep">·</span><span data-field="obras.' + i + '.año"' + ce + '>' + yr + '</span>' +
-      '</p>' +
-      '<p class="work-price" data-field="obras.' + i + '.precio"' + ce + '>$0 MXN</p>' +
-      '<p class="work-desc-edit" data-field="obras.' + i + '.descripcion"' + ce + '>Descripción de la obra.</p>' +
-      '<button class="obra-delete" onclick="deleteObra(this)">Eliminar obra</button>' +
-    '</div>';
-  grid.appendChild(article);
-  var imgInput = article.querySelector('.img-url-input');
-  var img = article.querySelector('img');
-  imgInput.addEventListener('input', function() { if (imgInput.value.trim()) img.src = imgInput.value.trim(); });
-  window.__data.obras.push({
-    titulo: 'Nueva obra', tecnica: 'Técnica', dimensiones: '00 × 00 cm',
-    año: yr, precio: '$0 MXN', descripcion: 'Descripción de la obra.',
-    imagen: { src: placeholder, alt: 'Nueva obra' }
-  });
-}
-
-function deleteRed(btn) {
-  var li = btn.closest('li');
-  var list = li.parentElement;
-  var index = Array.from(list.querySelectorAll('li')).indexOf(li);
-  li.remove();
-  window.__data.contacto.redes.splice(index, 1);
-  reindexRedes();
-}
-
-function addRed() {
-  var list = document.querySelector('.contact-socials');
-  var i = list.querySelectorAll('li').length;
-  var isEdit = document.body.classList.contains('edit-mode');
-  var ce = isEdit ? ' contenteditable="true" spellcheck="false"' : '';
-  var li = document.createElement('li');
-  li.innerHTML =
-    '<a href="#" data-field="contacto.redes.' + i + '.nombre"' + ce + '>Red social</a>' +
-    '<input class="social-url-input" type="url" data-field="contacto.redes.' + i + '.href" value="#" placeholder="https://…">' +
-    '<button class="red-delete" onclick="deleteRed(this)">×</button>';
-  list.appendChild(li);
-  var inp = li.querySelector('.social-url-input');
-  var a = li.querySelector('a');
-  inp.addEventListener('input', function() { a.href = inp.value.trim() || '#'; });
-  window.__data.contacto.redes.push({ nombre: 'Red social', href: '#' });
-}
-
-function initNameSync() {
-  var src = document.querySelector('[data-field="artista.nombre"]');
-  var h1 = document.getElementById('heroNameH1');
-  if (!src || !h1) return;
-  src.addEventListener('input', function() {
-    var parts = src.textContent.trim().split(' ');
-    h1.innerHTML = (parts[0] || '') + '<br><em>' + parts.slice(1).join(' ') + '</em>';
-  });
-}
-
-function initImgSync() {
-  document.querySelectorAll('input[data-img-field]').forEach(function(input) {
-    var wrap = input.closest('.img-edit-wrap');
-    var img = wrap ? wrap.parentElement.querySelector('img') : null;
-    if (!img) return;
-    input.addEventListener('input', function() {
-      if (input.value.trim()) img.src = input.value.trim();
-    });
-  });
-  document.querySelectorAll('.social-url-input').forEach(function(inp) {
-    var a = inp.previousElementSibling;
-    if (!a) return;
-    inp.addEventListener('input', function() { a.href = inp.value.trim() || '#'; });
-  });
-}
-
-// ============================================
 // BOOT
 // ============================================
 (async function() {
   var d = await getInfo();
-  window.__data = d;
   document.body.innerHTML = [
-    renderEditBar(),
     renderNav(d),
     renderHero(d),
     renderAbout(d),
@@ -1823,8 +1318,6 @@ function initImgSync() {
   initModal();
   initGallery();
   initReveal();
-  initNameSync();
-  initImgSync();
 })();
 </script>
 </body>
